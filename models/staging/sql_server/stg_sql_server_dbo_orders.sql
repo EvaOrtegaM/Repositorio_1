@@ -4,7 +4,7 @@ with source as (
 
 ),
 
-pedidos as (
+renamed_casted as (
 
     select
         shipping_service,
@@ -26,4 +26,4 @@ pedidos as (
 
 )
 
-select * from pedidos
+select status from renamed_casted group by status

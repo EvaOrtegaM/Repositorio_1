@@ -2,7 +2,12 @@ version: 2
 
 sources:
   - name: sql_server_dbo
-    database: dev_bronze_db_alumno_7
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
+      {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_bronze_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}
     tables:
       - name: addresses
         columns:
@@ -23,6 +28,12 @@ sources:
             description: "borrado de fivetran"
           - name: _fivetran_synced
             description: "traído de fivetran"
+            tests:
+            - not_null 
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date     
+
+
 
       - name: order_items
         columns:
@@ -44,6 +55,9 @@ sources:
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date               
 
       - name: orders
         columns:
