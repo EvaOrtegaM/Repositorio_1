@@ -1,0 +1,25 @@
+models:
+  - name: stg_sql_server_dbo_addresses
+    description: ""
+    columns:
+      - name: address
+        description: ""
+
+      - name: state
+        description: ""
+
+      - name: country
+        description: ""
+
+      - name: address_id
+        description: ""
+
+      - name: zipcode
+        description: ""
+
+      - name: _fivetran_deleted
+        description: ""
+
+      - name: _fivetran_synced
+        description: ""
+        
