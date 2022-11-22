@@ -32,10 +32,6 @@ sources:
 
             description: "Cantidad de presupuesto."
 
-            tests:
-
-              - not_null
-
           - name: month
 
             description: "Fecha."

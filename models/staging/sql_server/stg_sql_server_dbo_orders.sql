@@ -4,21 +4,22 @@ with source as (
 
 ),
 
-renamed_casted as (
+renamed as (
 
     select
+        order_id,
         shipping_service,
         shipping_cost,
-        status,
-        order_id,
-        estimated_delivery_at,
-        user_id,
-        order_total,
         address_id,
         created_at,
-        order_cost,
         promo_id,
+        estimated_delivery_at,
+        order_cost,
+        user_id,
+        order_total,
+        delivered_at,
         tracking_id,
+        status,
         _fivetran_deleted,
         _fivetran_synced
 
@@ -26,4 +27,4 @@ renamed_casted as (
 
 )
 
-select status from renamed_casted group by status
+select * from renamed

@@ -64,8 +64,7 @@ sources:
           - name: order_id
             description: "id del pedido"
             tests:
-            - not_null
-            - unique          
+            - not_null         
           - name: shipping_service
             description: ""
           - name: shipping_cost
