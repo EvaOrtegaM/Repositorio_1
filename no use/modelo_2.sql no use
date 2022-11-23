@@ -1,0 +1,26 @@
+with int_session_events_users as(
+    select * from {{ref(int_session_events_users)}}
+),
+
+dim_users as(
+    select * 
+    from {{ source('sql_server_dbo', 'users') }}
+),
+
+int_session_events_users_agg as (
+    select 
+        session_id
+        ,user_id
+        ,product_id
+        ,min(created_at) as first_event_time
+        ,max(created_at) as last_event_time
+
+     {% for event_type in event_types %}
+     sum {{event_type}} as{{event_type}}
+     {% if not loop.last %}, {% endif %}
+     {%endfor%}
+    from int_session_events_users
+    {{dbt_utils.group_by(2) }} )
+
+    select
+

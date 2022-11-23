@@ -1,0 +1,105 @@
+
+/*with source as (
+
+    select * from {{ source('sql_server_dbo', 'users') }}
+
+),
+
+consulta as (
+
+    select
+       count (distinct user_id)
+
+    from source
+
+)
+
+select * from consulta*/
+
+
+/*with source as (
+
+    select * from {{ source('sql_server_dbo', 'orders') }}
+
+),
+
+consulta as (
+
+    select
+       datediff()
+
+    from source
+
+)
+
+select * from consulta
+
+   count(order_id) as suma
+        group by user_id 
+
+*/
+
+/*  3
+with source as (
+
+    select * from {{ source('sql_server_dbo', 'orders') }}
+
+),
+
+consulta as (
+
+
+    select user_id, count(distinct order_id)   
+    from source
+
+)
+
+select * from consulta*/
+
+/*consulta correcta ejercicio 3
+
+with orders_users as(
+    select user_id, count(distinct order_id) as order_number
+    from {{ source('sql_server_dbo', 'orders') }}
+    group by 1
+)
+select 
+case when order_number>=3 then '3+'
+else order_number:: VARCHAR
+end as order_number
+,count(distinct user_id) as users
+from  orders_users
+group by 1
+order by 1;
+*/
+
+/*consulta  ejercicio 4
+
+with sessions_hour as(
+    select 
+    HOUR(created_at) as created_hour
+    ,count(distinct session_id) as unique_session
+    
+    
+    from {{ source('sql_server_dbo', 'events') }}
+    group by 1
+)
+select 
+avg(unique_session) as avg_session
+from sessions_hour
+*/
+------------------
+with sessions_hour_2 as(
+    select 
+    HOUR(created_at) as created_hour
+    ,count(distinct session_id) as unique_session
+    
+    from {{ source('sql_server_dbo', 'events') }}
+    group by created_hour
+)
+select 
+
+* 
+
+from sessions_hour
+group by created_hour
