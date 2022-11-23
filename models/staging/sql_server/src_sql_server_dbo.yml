@@ -2,7 +2,13 @@ version: 2
 
 sources:
   - name: sql_server_dbo
-    database: dev_bronze_db_alumno_7
+    schema: sql_server_dbo 
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
+      {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_bronze_db_alumno_7  
+      {%- else -%} {{target.database}}_bronze_db_alumno_7
+      {%- endif -%}    
     tables:
       - name: addresses
         description: "Data about addresses in the platform of demo."
