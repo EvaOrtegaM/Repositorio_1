@@ -2,22 +2,22 @@ version: 2
 
 sources:
   - name: sql_server_dbo
-    database: |
-      {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
-      {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
-      {%- elif target.name == 'pro'-%} pro_bronze_db_alumno_7  
-      {%- else -%} {{target.database}}
-      {%- endif -%}
+    database: dev_bronze_db_alumno_7
     tables:
       - name: addresses
+        description: "Data about addresses in the platform of demo."
         columns:
           - name: address_id
-            description: "id de la dirección"
+            description: >
+             Identificator of the
             tests:
             - not_null
-            - unique
+            - unique             
           - name: zipcode
             description: "código postal"   
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: number
           - name: country
             description: "país de la dirección"
           - name: address
@@ -28,12 +28,6 @@ sources:
             description: "borrado de fivetran"
           - name: _fivetran_synced
             description: "traído de fivetran"
-            tests:
-            - not_null 
-            - dbt_expectations.expect_column_values_to_be_of_type:
-               column_type: date     
-
-
 
       - name: order_items
         columns:
@@ -50,21 +44,21 @@ sources:
           - name: quantity
             description: "cantidad de producto por pedido"
             tests:
-              - positive_values            
+            - positive_values
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: number                          
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
-            tests:
-            - dbt_expectations.expect_column_values_to_be_of_type:
-               column_type: date               
 
       - name: orders
         columns:
           - name: order_id
             description: "id del pedido"
             tests:
-            - not_null         
+            - not_null
+            - unique          
           - name: shipping_service
             description: ""
           - name: shipping_cost
@@ -73,25 +67,34 @@ sources:
             description: ""
             tests:
             - not_null
-            - unique            
+            - relationships:
+                to: ref('addresses')
+                field: id                      
           - name: created_at
             description: ""
           - name: promo_id
             description: ""
             tests:
             - not_null
-            - unique            
+            - relationships:
+                to: ref('promos')
+                field: id                        
           - name: estimated_delivery_at
             description: ""
+            tests:            
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: timestamp_tz            
           - name: order_cost
             description: ""
             tests:
-              - positive_values            
+              - positive_values(sql_server_dbo_orders, order_cost)            
           - name: user_id
             description: ""
             tests:
             - not_null
-            - unique            
+            - relationships:
+                to: ref('users')
+                field: id                       
           - name: order_total
             description: ""
             tests:
@@ -101,8 +104,7 @@ sources:
           - name: tracking_id
             description: ""
             tests:
-            - not_null
-            - unique    
+            - not_null    
                     
           - name: status
             description: ""
