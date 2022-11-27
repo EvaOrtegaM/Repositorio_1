@@ -7,7 +7,7 @@ WITH src_sql_server_dbo AS (
 productos AS (
     SELECT
     product_id
-    ,price as price_$
+    ,price as price_usd
     ,name
     ,inventory
     ,_fivetran_deleted
