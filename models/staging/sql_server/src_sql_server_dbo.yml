@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: sql_server_dbo
+    schema: sql_server_dbo
     database: |
       {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
       {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
@@ -17,7 +18,10 @@ sources:
             - not_null
             - unique
           - name: zipcode
-            description: "código postal"   
+            description: "código postal"
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number             
           - name: country
             description: "país de la dirección"
           - name: address
@@ -50,7 +54,9 @@ sources:
           - name: quantity
             description: "cantidad de producto por pedido"
             tests:
-              - positive_values            
+            - positive_values
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date                               
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
@@ -70,6 +76,9 @@ sources:
             description: ""
           - name: shipping_cost
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float            
           - name: address_id
             description: ""
             tests:
@@ -77,6 +86,9 @@ sources:
             - unique            
           - name: created_at
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date                 
           - name: promo_id
             description: ""
             tests:
@@ -84,10 +96,15 @@ sources:
             - unique            
           - name: estimated_delivery_at
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date                 
           - name: order_cost
             description: ""
             tests:
-              - positive_values            
+            - positive_values
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float                               
           - name: user_id
             description: ""
             tests:
@@ -96,9 +113,14 @@ sources:
           - name: order_total
             description: ""
             tests:
-              - positive_values               
+            - positive_values   
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float                               
           - name: delivered_at
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date                 
           - name: tracking_id
             description: ""
             tests:
@@ -111,6 +133,9 @@ sources:
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date                 
 
       - name: products
         columns:
@@ -122,15 +147,24 @@ sources:
           - name: price
             description: ""
             tests:
-              - positive_values               
+            - positive_values  
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float                                
           - name: name
             description: ""
           - name: inventory
             description: ""
+            tests:
+            - positive_values            
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number                 
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: date            
 
       - name: promos
         columns:
@@ -141,12 +175,19 @@ sources:
             - unique            
           - name: discount
             description: ""
+            tests:
+            - positive_values            
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number
           - name: status
             description: ""
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp            
 
       - name: users
         columns:
@@ -165,8 +206,8 @@ sources:
             description: ""
           - name: phone_number
             description: ""
-          - name: total_orders
-            description: ""
+          ##- name: total_orders
+          ##Columna borrada porque todos los datos null.
           - name: first_name
             description: ""
           - name: email
