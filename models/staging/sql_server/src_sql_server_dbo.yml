@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: sql_server_dbo
+    schema: sql_server_dbo
     database: |
       {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
       {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
@@ -17,7 +18,10 @@ sources:
             - not_null
             - unique
           - name: zipcode
-            description: "código postal"   
+            description: "código postal"
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number             
           - name: country
             description: "país de la dirección"
           - name: address
@@ -31,7 +35,7 @@ sources:
             tests:
             - not_null 
             - dbt_expectations.expect_column_values_to_be_of_type:
-               column_type: date     
+               column_type: timestamp_tz     
 
 
 
@@ -40,24 +44,25 @@ sources:
           - name: order_id
             description: "id del pedido"
             tests:
-            - not_null
-            - unique            
+            - not_null            
           - name: product_id
             description: "id del producto"
             tests:
-            - not_null
-            - unique            
+            - not_null          
           - name: quantity
             description: "cantidad de producto por pedido"
             tests:
-              - positive_values            
+            - dbt_utils.expression_is_true:
+                expression: " > 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number                               
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
-               column_type: date               
+               column_type: timestamp_tz               
 
       - name: orders
         columns:
@@ -70,47 +75,65 @@ sources:
             description: ""
           - name: shipping_cost
             description: ""
+            tests:
+            - dbt_utils.expression_is_true:
+                expression: " > 0"            
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float            
           - name: address_id
             description: ""
             tests:
-            - not_null
-            - unique            
+            - not_null         
           - name: created_at
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz                 
           - name: promo_id
             description: ""
             tests:
-            - not_null
-            - unique            
+            - not_null          
           - name: estimated_delivery_at
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz                 
           - name: order_cost
             description: ""
             tests:
-              - positive_values            
+            - dbt_utils.expression_is_true:
+                expression: " > 0"  
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float                               
           - name: user_id
             description: ""
             tests:
-            - not_null
-            - unique            
+            - not_null        
           - name: order_total
             description: ""
             tests:
-              - positive_values               
+            - dbt_utils.expression_is_true:
+                expression: " > 0"  
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float                               
           - name: delivered_at
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz                 
           - name: tracking_id
             description: ""
             tests:
-            - not_null
-            - unique    
-                    
+            - not_null   
           - name: status
             description: ""
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz                 
 
       - name: products
         columns:
@@ -122,15 +145,26 @@ sources:
           - name: price
             description: ""
             tests:
-              - positive_values               
+            - dbt_utils.expression_is_true:
+                expression: " > 0" 
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: float                                
           - name: name
             description: ""
           - name: inventory
             description: ""
+            tests:
+            - dbt_utils.expression_is_true:
+                expression: " > 0"            
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number                 
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz            
 
       - name: promos
         columns:
@@ -141,12 +175,20 @@ sources:
             - unique            
           - name: discount
             description: ""
+            tests:
+            - dbt_utils.expression_is_true:
+                expression: " > 0"           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: number
           - name: status
             description: ""
           - name: _fivetran_deleted
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz            
 
       - name: users
         columns:
@@ -157,16 +199,22 @@ sources:
             - unique            
           - name: updated_at
             description: ""
+            tests:           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_ntz            
           - name: address_id
             description: ""
           - name: last_name
             description: ""
           - name: created_at
             description: ""
+            tests:           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_ntz            
           - name: phone_number
             description: ""
-          - name: total_orders
-            description: ""
+          ##- name: total_orders
+          ##Columna borrada porque todos los datos null.
           - name: first_name
             description: ""
           - name: email
@@ -175,6 +223,9 @@ sources:
             description: ""
           - name: _fivetran_synced
             description: ""
+            tests:           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz            
 
       - name: events
         description: "Data about events in the platform of demo."
@@ -183,33 +234,35 @@ sources:
             description: >
               UUID of each unique event on the platform.
             tests:
-              - not_null
-              - unique
+            - not_null
+            - unique
           - name: session_id
             description: >
                 UUID of each browsing session on the platform which can contain many events.
             tests:
-              - not_null
+            - not_null
           - name: user_id
             description: >
                UUID of the user that this event is associated with.
             tests:
-              - not_null
+            - not_null
           - name: page_url
             description: >
              URL that the event happened on.
             tests:
-              - not_null
+            - not_null
           - name: created_at
             description: >
              Timestamp of the event (UTC).
             tests:
-             - not_null
+            - not_null     
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_ntz            
           - name: event_type
             description: >
              Type of event.
             tests:
-              - not_null
+             - not_null
           - name: order_id
             description: >
              If the event is specific to an order (mostly used for checkout).
@@ -221,4 +274,7 @@ sources:
              Date that the data was loaded.
             tests:
             - not_null
+            tests:           
+            - dbt_expectations.expect_column_values_to_be_of_type:
+               column_type: timestamp_tz            
             

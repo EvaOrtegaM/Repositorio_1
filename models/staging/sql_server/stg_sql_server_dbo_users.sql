@@ -12,7 +12,6 @@ renamed as (
         address_id,
         created_at,
         phone_number,
-        total_orders,
         user_id,
         first_name,
         last_name,
