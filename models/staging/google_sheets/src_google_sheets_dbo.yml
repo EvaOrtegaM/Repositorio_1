@@ -5,7 +5,7 @@ version: 2
 sources:
 
   - name: google_sheets
-
+    schema: google_sheets
     database: |
       {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
       {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
