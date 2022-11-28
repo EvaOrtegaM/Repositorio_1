@@ -26,4 +26,4 @@ renamed_casted as (
 
 )
 
-select status from renamed_casted group by status
+select * from renamed_casted 
