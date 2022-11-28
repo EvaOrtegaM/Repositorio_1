@@ -17,6 +17,9 @@ sources:
             tests:
             - not_null
             - unique
+            - relationships:
+                  to: source('sql_server_dbo','orders')
+                  field: address_id
           - name: zipcode
             description: "código postal"
             tests:
@@ -44,7 +47,10 @@ sources:
           - name: order_id
             description: "id del pedido"
             tests:
-            - not_null            
+            - not_null
+            - relationships:
+                  to: source('sql_server_dbo','orders')
+                  field: order_id                        
           - name: product_id
             description: "id del producto"
             tests:
@@ -141,7 +147,7 @@ sources:
             description: ""
             tests:
             - not_null
-            - unique            
+            - unique                     
           - name: price
             description: ""
             tests:
@@ -196,7 +202,10 @@ sources:
             description: ""
             tests:
             - not_null
-            - unique            
+            - unique  
+            - relationships:
+                  to: source('sql_server_dbo','orders')
+                  field: user_id                      
           - name: updated_at
             description: ""
             tests:           
