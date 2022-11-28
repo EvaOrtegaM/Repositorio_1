@@ -8,7 +8,7 @@ renamed_casted as (
 
     select
         shipping_service,
-        shipping_cost_usd,
+        shipping_cost as shipping_cost_usd,
         status,
         order_id,
         estimated_delivery_at,
@@ -16,7 +16,7 @@ renamed_casted as (
         order_total,
         address_id,
         created_at,
-        order_cost_usd,
+        order_cost as order_cost_usd,
         promo_id,
         tracking_id,
         _fivetran_deleted,
