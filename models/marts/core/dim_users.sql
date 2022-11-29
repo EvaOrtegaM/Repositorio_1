@@ -1,10 +1,10 @@
-with source as (
+with stg_users as (
 
-    select * from {{ source('sql_server_dbo', 'users') }}
+    select * from {{ ref('stg_sql_server_dbo_orders') }}
 
 ),
 
-renamed as (
+renamed_casted as (
 
     select
         email,
@@ -18,8 +18,8 @@ renamed as (
         _fivetran_deleted,
         _fivetran_synced
 
-    from source
+    from stg_users
 
 )
 
-select * from renamed
+select * from renamed_casted
