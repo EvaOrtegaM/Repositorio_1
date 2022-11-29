@@ -45,9 +45,9 @@ sources:
             description: "id del pedido"
             tests:
             - not_null
-            - relationships:
-                  to: source('sql_server_dbo','orders')
-                  field: order_id                        
+        #    - relationships:
+         #         to: source('sql_server_dbo','orders')
+          #        field: order_id                        
           - name: product_id
             description: "id del producto"
             tests:
