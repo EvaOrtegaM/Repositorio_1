@@ -7,7 +7,7 @@ with source as (
 renamed as (
 
     select
-        status,
+        status as status_promo,
         promo_id,
         discount,
         _fivetran_deleted,
