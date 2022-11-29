@@ -5,7 +5,7 @@ sources:
     schema: sql_server_dbo
     database: |
       {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
-      {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_bronze_db_alumno_7 
       {%- elif target.name == 'pro'-%} pro_bronze_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}
