@@ -1,6 +1,6 @@
 with stg_users as (
 
-    select * from {{ ref('stg_sql_server_dbo_orders') }}
+    select * from {{ ref('stg_sql_server_dbo_users') }}
 
 ),
 
