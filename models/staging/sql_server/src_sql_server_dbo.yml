@@ -5,7 +5,7 @@ sources:
     schema: sql_server_dbo
     database: |
       {%- if  target.name == 'user_dev' -%} dev_bronze_db_alumno_7 
-      {%- elif target.name == 'ci' -%} dev_bronze_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_bronze_db_alumno_7 
       {%- elif target.name == 'pro'-%} pro_bronze_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}
@@ -17,9 +17,6 @@ sources:
             tests:
             - not_null
             - unique
-            - relationships:
-                  to: source('sql_server_dbo','orders')
-                  field: address_id
           - name: zipcode
             description: "código postal"
             tests:
@@ -89,7 +86,10 @@ sources:
           - name: address_id
             description: ""
             tests:
-            - not_null         
+            - not_null
+            - relationships:
+                  to: source('sql_server_dbo','addresses')
+                  field: address_id                          
           - name: created_at
             description: ""
             tests:
@@ -98,7 +98,7 @@ sources:
           - name: promo_id
             description: ""
             tests:
-            - not_null          
+            - not_null                     
           - name: estimated_delivery_at
             description: ""
             tests:
@@ -114,7 +114,10 @@ sources:
           - name: user_id
             description: ""
             tests:
-            - not_null        
+            - not_null
+            - relationships:
+                  to: source('sql_server_dbo','users')
+                  field: user_id                    
           - name: order_total
             description: ""
             tests:
@@ -202,10 +205,7 @@ sources:
             description: ""
             tests:
             - not_null
-            - unique  
-            - relationships:
-                  to: source('sql_server_dbo','orders')
-                  field: user_id                      
+            - unique                      
           - name: updated_at
             description: ""
             tests:           
@@ -222,8 +222,8 @@ sources:
                column_type: timestamp_ntz            
           - name: phone_number
             description: ""
-          ##- name: total_orders
-          ##Columna borrada porque todos los datos null.
+          # - name: total_orders
+          # Columna borrada porque todos los datos null.
           - name: first_name
             description: ""
           - name: email
