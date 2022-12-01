@@ -7,11 +7,12 @@ WITH src_sql_server_dbo AS (
 productos AS (
     SELECT
     product_id
-    ,price as price_usd
     ,name
+    ,price as price_usd
     ,inventory
     ,_fivetran_deleted
-    ,_fivetran_synced
+    ,_fivetran_synced as date_load
+
     FROM src_sql_server_dbo
     )
 

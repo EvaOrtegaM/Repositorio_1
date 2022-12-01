@@ -10,17 +10,17 @@ renamed_casted AS (
         , user_id 
         , promo_id
         , address_id
-        , created_at_utc
+        , order_created_at_utc
         , order_cost_usd
         , shipping_cost_usd
         , total_order_cost_usd
-        , tracking_id
         , shipping_service
+        , status_order        
         , estimated_delivery_at_utc
         , delivered_at_utc
-		, DATEDIFF(day, created_at_utc, delivered_at_utc) AS days_to_deliver
-        , status_order
-        , _fivetran_synced
+		, DATEDIFF(day, order_created_at_utc, delivered_at_utc) AS days_to_deliver
+        , tracking_id
+        , date_load
     FROM stg_orders
     )
 
