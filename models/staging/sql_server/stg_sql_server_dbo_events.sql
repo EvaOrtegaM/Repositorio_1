@@ -11,7 +11,7 @@ renamed_casted AS (
         ,user_id
         ,product_id
         ,session_id
-        ,created_at as created_at_utc
+        ,created_at as event_created_at_utc
         ,order_id
         ,_fivetran_deleted
         ,_fivetran_synced

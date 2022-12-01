@@ -8,9 +8,9 @@ renamed as (
 
     select
         email,
-        updated_at as updated_at_utc,
+        updated_at as user_updated_at_utc,
         address_id,
-        created_at as created_at_utc,
+        created_at as user_created_at_utc,
         phone_number,
         user_id,
         first_name,

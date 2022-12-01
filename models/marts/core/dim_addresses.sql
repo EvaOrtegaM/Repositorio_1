@@ -13,8 +13,7 @@ renamed_casted as (
         country,
         address_id,
         zipcode,
-        _fivetran_deleted,
-        _fivetran_synced
+        date_load
 
     from stg_addresses
 
