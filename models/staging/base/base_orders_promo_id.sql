@@ -9,11 +9,10 @@ renamed_casted as (
     select
         order_id, 
         user_id,
-        md5(promo_id::varchar) as promotion_id,
+        md5(promo_id) as promo_id,
         case when promo_id ='' then 'No promotion' 
         else promo_id
-        end as promo_name,
-        promo_id    
+        end as promo_name,    
         address_id,
         created_at,
         order_cost,                    
