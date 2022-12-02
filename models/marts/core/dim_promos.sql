@@ -8,11 +8,11 @@ renamed_casted as (
 
     select
 
-        status_promo,
         promo_id,
+        promo_name,    
+        status_promo,
         discount,
-        _fivetran_deleted,
-        _fivetran_synced
+        date_load
 
         from stg_promos
 

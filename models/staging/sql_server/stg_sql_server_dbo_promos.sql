@@ -7,14 +7,19 @@ with source as (
 renamed as (
 
     select
+
+        md5(promo_id) as promo_id,
+        promo_id as promo_name,        
         status as status_promo,
-        promo_id,
         discount,
         _fivetran_deleted,
-        _fivetran_synced
+        _fivetran_synced as date_load 
 
     from source
 
 )
 
 select * from renamed
+
+union all 
+select md5('') as promo_id, 'No promotion', 'inactive', 0, 'false', sysdate()
