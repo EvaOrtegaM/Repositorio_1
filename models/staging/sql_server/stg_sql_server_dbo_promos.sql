@@ -1,19 +1,22 @@
-with source as (
 
-    select * from {{ source('sql_server_dbo', 'promos') }}
+with base_promos as (
+
+    select * from {{ ref('base_promos_promo_id') }}
 
 ),
 
 renamed as (
 
     select
+
+        promotion_id,
+        promo_name,
         status as status_promo,
-        promo_id,
         discount,
         _fivetran_deleted,
-        _fivetran_synced
+        _fivetran_synced as date_load
 
-    from source
+    from base_promos
 
 )
 

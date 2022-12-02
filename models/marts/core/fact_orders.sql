@@ -8,7 +8,7 @@ renamed_casted AS (
     SELECT
         order_id 
         , user_id 
-        , promo_id
+        , promotion_id       
         , address_id
         , order_created_at_utc
         , order_cost_usd
