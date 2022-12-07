@@ -34,7 +34,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 
 models:
-  +transient: false  # QUE NO GENERE TRANSIENT
+  +transient: false 
   my_new_project:
     # Applies to all files under models/example/
 
@@ -66,9 +66,9 @@ snapshots:
   +sql_header: "alter session set timezone = 'Europe/Madrid';alter session set week_start = 7;"
   +transient: false
   +target_database: |  
-        {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7
-        {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7
-        {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7
-        {%- else -%} {{target.database}}_silver_db_alumno_7
+        {%- if  target.name == 'user_dev' -%} dev_gold_db_alumno_7
+        {%- elif target.name == 'ci' -%} pro_gold_db_alumno_7
+        {%- elif target.name == 'pro'-%} pro_gold_db_alumno_7
+        {%- else -%} {{target.database}}_gold_db_alumno_7
         {%- endif -%}
   +target_schema: snapshots

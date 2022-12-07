@@ -9,7 +9,7 @@ renamed as (
     select
 
         md5(promo_id) as promo_id,
-        promo_id as promo_name,        
+        promo_id as promo_description,        
         status as status_promo,
         discount,
         _fivetran_deleted,

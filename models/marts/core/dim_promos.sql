@@ -9,7 +9,7 @@ renamed_casted as (
     select
 
         promo_id,
-        promo_name,    
+        promo_description,    
         status_promo,
         discount,
         date_load
