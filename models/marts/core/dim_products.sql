@@ -10,7 +10,7 @@ products AS (
     SELECT
 
     product_id
-    ,name
+    ,product_description
     ,price_usd
     ,inventory
     ,date_load

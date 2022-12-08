@@ -14,7 +14,7 @@ renamed_casted AS (
         ,created_at as event_created_at_utc
         ,order_id
         ,_fivetran_deleted
-        ,_fivetran_synced
+        ,_fivetran_synced as date_load
     FROM src_events
     )
 

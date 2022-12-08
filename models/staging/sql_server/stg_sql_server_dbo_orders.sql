@@ -7,11 +7,12 @@ with source as (
 renamed_casted as (
 
     select
+    
         order_id, 
-        user_id,
-        case when promo_id ='' then 'No promotion' 
-        else promo_id
-        end as promo_id,    
+        user_id, 
+        case when promo_id='' then md5('')
+        else  md5(promo_id)
+        end as promo_id,          
         address_id,
         created_at as order_created_at_utc,
         order_cost as order_cost_usd,                    

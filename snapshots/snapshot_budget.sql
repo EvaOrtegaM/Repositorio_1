@@ -3,13 +3,12 @@
 {{
     config(
       target_schema='snapshots',
-      unique_key='_row',
-      strategy='check',
-      check_cols=['quantity'],
-      invalidate_hard_deletes=True,
-        )
+      unique_key='_row',    
+      strategy='timestamp',
+      updated_at='_fivetran_synced',
+    )
 }}
 
-select * from {{ source('google_sheets', 'budget') }}
+select * from {{ ref('stg_google_sheets_budget')}}
 
 {% endsnapshot %}

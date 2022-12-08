@@ -4,10 +4,10 @@ WITH src_sql_server_dbo AS (
     FROM {{ source('sql_server_dbo', 'products') }}
     ),
 
-productos AS (
+renamed AS (
     SELECT
     product_id
-    ,name
+    ,name as product_description
     ,price as price_usd
     ,inventory
     ,_fivetran_deleted
@@ -16,6 +16,6 @@ productos AS (
     FROM src_sql_server_dbo
     )
 
-SELECT * FROM productos
+SELECT * FROM renamed
 
 
