@@ -9,6 +9,6 @@
     )
 }}
 
-select * from {{ ref('stg_google_sheets_budget')}}
+select * from {{ ref('fct_budget')}}
 
 {% endsnapshot %}
