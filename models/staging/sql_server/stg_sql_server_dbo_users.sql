@@ -7,16 +7,16 @@ with source as (
 renamed as (
 
     select
-        email,
-        updated_at as user_updated_at_utc,
-        address_id,
-        created_at as user_created_at_utc,
-        phone_number,
         user_id,
         first_name,
-        last_name,
+        last_name,        
+        email,
+        phone_number,        
+        address_id,
+        created_at as user_created_at_utc,
+        updated_at as user_updated_at_utc,        
         _fivetran_deleted,
-        _fivetran_synced
+        _fivetran_synced as date_load
 
     from source
 
