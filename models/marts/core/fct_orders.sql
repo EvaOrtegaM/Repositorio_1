@@ -1,3 +1,9 @@
+{{ config(
+    materialized='incremental',
+    unique_key = 'order_id'
+    ) 
+    }}
+
 WITH stg_orders AS (
     SELECT * 
     FROM {{ ref('stg_sql_server_dbo_orders') }}
@@ -25,3 +31,9 @@ renamed_casted AS (
     )
 
 SELECT * FROM renamed_casted
+
+{% if is_incremental() %}
+
+  where date_load > (select max(date_load) from {{ this }})
+
+{% endif %}

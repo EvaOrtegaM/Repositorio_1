@@ -13,25 +13,25 @@ sources:
       - name: addresses
         columns:
           - name: address_id
-            description: "id de la dirección"
+            description: "UUID of each delivery address of each customer."
             tests:
             - not_null
             - unique
           - name: zipcode
-            description: "código postal"
+            description: "Zipcode of each delivery address of each customer."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: number             
           - name: country
-            description: "país de la dirección"
+            description: "Country of each delivery address of each customer."
           - name: address
-            description: "dirección"
+            description: "Complete address direction of each delivery address of each customer."
           - name: state
-            description: "estado del país"
+            description: "State address direction of each delivery address of each customer."
           - name: _fivetran_deleted
-            description: "borrado de fivetran"
+            description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
-            description: "traído de fivetran"
+            description: "Date that the data was loaded from fivetran."
             tests:
             - not_null 
             - dbt_expectations.expect_column_values_to_be_of_type:
@@ -42,26 +42,26 @@ sources:
       - name: order_items
         columns:
           - name: order_id
-            description: "id del pedido"
+            description: "UUID of each unique product item in each order."
             tests:
             - not_null
             - relationships:
                   to: source('sql_server_dbo','orders')
                   field: order_id                        
           - name: product_id
-            description: "id del producto"
+            description: "UUID of each unique product item in each order."
             tests:
             - not_null          
           - name: quantity
-            description: "cantidad de producto por pedido"
+            description: "Quantity of each unique product item in each order."
             tests:
             - positive_values
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: number                               
           - name: _fivetran_deleted
-            description: ""
+            description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
-            description: ""
+            description: "Date that the data was loaded from fivetran."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz               
@@ -69,76 +69,76 @@ sources:
       - name: orders
         columns:
           - name: order_id
-            description: "id del pedido"
+            description: "UUID of each unique order."
             tests:
             - not_null
             - unique          
           - name: shipping_service
-            description: ""
+            description: "{{ doc('shipping_service') }}"
           - name: shipping_cost
-            description: ""
+            description: "Shipping cost of each order."
             tests:
             - positive_values                           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: float            
           - name: address_id
-            description: ""
+            description: "UUID of each delivery address of each customer."
             tests:
             - not_null
             - relationships:
                   to: source('sql_server_dbo','addresses')
                   field: address_id                          
           - name: created_at
-            description: ""
+            description: "Timestamp of the order creation date (UTC)."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz                 
           - name: promo_id
-            description: ""
+            description: "UUID of each unique promotion."
             tests:
             - not_null                     
           - name: estimated_delivery_at
-            description: ""
+            description: "Timestamp of the estimated delivery date (UTC)."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz                 
           - name: order_cost
-            description: ""
+            description: "Order cost of each order, without shippinig cost."
             tests:
             - positive_values 
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: float                               
           - name: user_id
-            description: ""
+            description: "UUID of each unique user."
             tests:
             - not_null
             - relationships:
                   to: source('sql_server_dbo','users')
                   field: user_id                    
           - name: order_total
-            description: ""
+            description: "Total order cost of each order, as the sum of the order cost and the shipping cost."
             tests:
             - positive_values  
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: float                               
           - name: delivered_at
-            description: ""
+            description: "Timestamp of the delivery date (UTC)."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz                 
           - name: tracking_id
-            description: ""
+            description: "UUID of each unique tracking code."
             tests:
             - not_null   
           - name: status
-            description: ""
+            description: "{{ doc('order_status') }}"
             tests:
             - accepted_values:
                 values: ['delivered','preparing', 'shipped']
           - name: _fivetran_deleted
-            description: ""
+            description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
-            description: ""
+            description: "Date that the data was loaded from fivetran."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz                 
@@ -146,28 +146,28 @@ sources:
       - name: products
         columns:
           - name: product_id
-            description: ""
+            description: "UUID of each unique product."
             tests:
             - not_null
             - unique                     
           - name: price
-            description: ""
+            description: "Price of each unique product."
             tests:
             - positive_values 
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: float                                
           - name: name
-            description: ""
+            description: "Name of each unique product."
           - name: inventory
-            description: ""
+            description: "Quantity on inventory of each unique product."
             tests:
             - positive_values            
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: number                 
           - name: _fivetran_deleted
-            description: ""
+            description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
-            description: ""
+            description: "Date that the data was loaded from fivetran."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
@@ -175,22 +175,22 @@ sources:
       - name: promos
         columns:
           - name: promo_id
-            description: ""
+            description: "UUID of each unique promotion."
             tests:
             - not_null
             - unique            
           - name: discount
-            description: ""
+            description: "Discount in an order cost due to a promotion"
             tests:
             - positive_values          
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: number
           - name: status
-            description: ""
+            description: "Status of the promotion, if it is active or not."
           - name: _fivetran_deleted
-            description: ""
+            description: Date that the data was deleted (if it has been deleted) from fivetran.
           - name: _fivetran_synced
-            description: ""
+            description: Date that the data was loaded from fivetran.
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
@@ -198,21 +198,21 @@ sources:
       - name: users
         columns:
           - name: user_id
-            description: ""
+            description: UUID of each unique user.
             tests:
             - not_null
             - unique                      
           - name: updated_at
-            description: ""
+            description: Date (UTC) of last user's account update.
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
           - name: address_id
             description: ""
           - name: last_name
-            description: ""
+            description: User's last name. PII.
           - name: created_at
-            description: ""
+            description: Date (UTC) of user's account creation.
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
@@ -221,13 +221,13 @@ sources:
           # - name: total_orders
           # Columna borrada porque todos los datos null.
           - name: first_name
-            description: ""
+            description: User's first name. PII.
           - name: email
-            description: ""
+            description: User's email. PII.
           - name: _fivetran_deleted
-            description: ""
+            description: Date that the data was deleted (if it has been deleted) from fivetran.
           - name: _fivetran_synced
-            description: ""
+            description: Date that the data was loaded from fivetran.
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
@@ -236,49 +236,40 @@ sources:
         description: "Data about events in the platform of demo."
         columns:
           - name: event_id
-            description: >
-              UUID of each unique event on the platform.
+            description: UUID of each unique event on the platform.
             tests:
             - not_null
             - unique
           - name: session_id
-            description: >
-                UUID of each browsing session on the platform which can contain many events.
+            description: UUID of each browsing session on the platform which can contain many events.
             tests:
             - not_null
           - name: user_id
-            description: >
-               UUID of the user that this event is associated with.
+            description: UUID of the user that this event is associated with.
             tests:
             - not_null
           - name: page_url
-            description: >
-             URL that the event happened on.
+            description: URL that the event happened on.
             tests:
             - not_null
           - name: created_at
-            description: >
-             Timestamp of the event (UTC).
+            description: Timestamp of the event (UTC).
             tests:
             - not_null     
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
           - name: event_type
-            description: >
-             Type of event.
+            description: 
             tests:
              - not_null
              - accepted_values:
                  values: ['page_view', 'add_to_cart', 'package_shipped', 'checkout']
           - name: order_id
-            description: >
-             If the event is specific to an order (mostly used for checkout).
+            description: If the event is specific to an order (mostly used for checkout).
           - name: product_id
-            description: >
-             If the event is specific to a product.
+            description: If the event is specific to a product.
           - name: _fivetran_synced
-            description: >
-             Date that the data was loaded.
+            description: Date that the data was loaded from fivetran.
             tests:
             - not_null
             tests:           
