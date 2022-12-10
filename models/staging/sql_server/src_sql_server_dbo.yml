@@ -11,6 +11,7 @@ sources:
       {%- endif -%}
     tables:
       - name: addresses
+        description: "Data about addresses in the platform of demo."      
         columns:
           - name: address_id
             description: "UUID of each delivery address of each customer."
@@ -40,6 +41,7 @@ sources:
 
 
       - name: order_items
+        description: "Data about items of each order in the platform of demo."       
         columns:
           - name: order_id
             description: "UUID of each unique product item in each order."
@@ -64,9 +66,12 @@ sources:
             description: "Date that the data was loaded from fivetran."
             tests:
             - dbt_expectations.expect_column_values_to_be_of_type:
-               column_type: timestamp_tz               
+               column_type: timestamp_tz       
+
+
 
       - name: orders
+        description: "Data about orders in the platform of demo."       
         columns:
           - name: order_id
             description: "UUID of each unique order."
@@ -103,7 +108,7 @@ sources:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz                 
           - name: order_cost
-            description: "Order cost of each order, without shippinig cost."
+            description: "Order cost of each order, without shipping cost."
             tests:
             - positive_values 
             - dbt_expectations.expect_column_values_to_be_of_type:
@@ -143,7 +148,10 @@ sources:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz                 
 
+
+
       - name: products
+        description: "Data about products in the platform of demo."       
         columns:
           - name: product_id
             description: "UUID of each unique product."
@@ -172,7 +180,10 @@ sources:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
 
+
+
       - name: promos
+        description: "Data about promos in the platform of demo."       
         columns:
           - name: promo_id
             description: "UUID of each unique promotion."
@@ -195,7 +206,10 @@ sources:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
 
+
+
       - name: users
+        description: "Data about users in the platform of demo."       
         columns:
           - name: user_id
             description: "UUID of each unique user."
@@ -217,7 +231,7 @@ sources:
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
           - name: phone_number
-            description: ""
+            description: "User's phone number. PII."
           # - name: total_orders
           # Columna borrada porque todos los datos null.
           - name: first_name
@@ -231,6 +245,8 @@ sources:
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
+
+
 
       - name: events
         description: "Data about events in the platform of demo."

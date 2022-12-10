@@ -16,11 +16,13 @@ sources:
 
       - name: budget
 
+        description: "Data about sales forecast for each month in the platform of demo."
+
         columns:
 
           - name: _row
 
-            description: "Filas."
+            description: "Incremental primary key for each row."
 
             tests:
 
@@ -30,7 +32,7 @@ sources:
 
           - name: quantity
 
-            description: "Cantidad de presupuesto."
+            description: "Quantity of each unique product item that is expected to be sold in that month."
 
             tests:
 
@@ -38,7 +40,7 @@ sources:
 
           - name: month
 
-            description: "Fecha."
+            description: "Budget date that represents the month of each sales forecast."
 
             tests:
 
@@ -46,13 +48,15 @@ sources:
 
           - name: product_id
 
-            description: "Identificador de producto."
+            description: "UUID of each unique product."
 
             tests:
 
               - not_null
 
           - name: _fivetran_synced
+
+            description: "Date that the data was loaded from fivetran."
 
 
 

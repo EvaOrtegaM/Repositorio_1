@@ -17,7 +17,7 @@ renamed_casted AS (
         , month(budget_date) as month
         , monthname(budget_date) as desc_month
         , quantity 
-        ,_fivetran_synced 
+        ,_fivetran_synced
 
     FROM stg_budget_products
     )
