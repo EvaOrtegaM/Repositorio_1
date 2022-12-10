@@ -4,36 +4,37 @@ models:
   - name: stg_sql_server_dbo_addresses
     description: ""
     columns:
-      - name: address
-        description: ""
-
-      - name: state
-        description: ""
-
-      - name: country
-        description: ""
 
       - name: address_id
-        description: ""
-        
-      - name: zipcode
-        description: ""
+        description: "UUID of each delivery address of each customer."
 
-      - name: _fivetran_deleted
-        description: ""
+      - name: address
+        description: "Complete description of each delivery address of each customer."
+
+      - name: state
+        description: "State of each delivery address of each customer."
+
+      - name: country
+        description: "Country of each delivery address of each customer."
+
+      - name: zipcode
+        description: "Zipcode of each delivery address of each customer."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
-        description: ""
+        description: "Date that the data was loaded from fivetran."
 
-models:
+
   - name: stg_sql_server_dbo_events
-    description: ""
+    description: "Data about events in the platform of demo."
     columns:
       - name: event_id
-        description: ""
+        description: "UUID of each unique event on the platform."
 
       - name: page_url
-        description: ""
+        description: "URL that the event happened on."
 
       - name: event_type
         description: ""
@@ -53,13 +54,32 @@ models:
       - name: order_id
         description: ""
 
-      - name: _fivetran_deleted
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."      
+
+
+  - name: stg_sql_server_dbo_order_items
+    description: ""
+    columns:
+      - name: order_id
         description: ""
 
-      - name: _fivetran_synced
-        description: ""        
+      - name: product_id
+        description: ""
 
-models:
+      - name: quantity
+        description: ""
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: _fivetran_synced
+        description: "Date that the data was loaded from fivetran."
+
+
   - name: stg_sql_server_dbo_orders
     description: ""
     columns:
@@ -102,11 +122,12 @@ models:
       - name: tracking_id
         description: ""
 
-      - name: _fivetran_deleted
-        description: ""
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
-        description: ""     
+        description: "Date that the data was loaded from fivetran."
+
 
 models:
   - name: stg_sql_server_dbo_products
@@ -115,7 +136,7 @@ models:
       - name: product_id
         description: ""
 
-      - name: name
+      - name: product_description
         description: ""
 
       - name: price_usd
@@ -124,32 +145,35 @@ models:
       - name: inventory
         description: ""
 
-      - name: _fivetran_deleted
-        description: ""
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
-        description: ""           
+        description: "Date that the data was loaded from fivetran."
 
-models:
+
   - name: stg_sql_server_dbo_promos
     description: ""
     columns:
-      - name: status_promo
+      - name: promo_id
         description: ""
 
-      - name: promo_id
+      - name: promo_description
+        description: ""
+
+      - name: status_promo
         description: ""
 
       - name: discount
         description: ""
 
-      - name: _fivetran_deleted
-        description: ""
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
-      - name: _fivetran_synced
-        description: ""
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
 
-models:
+
   - name: stg_sql_server_dbo_users
     description: ""
     columns:
@@ -177,8 +201,8 @@ models:
       - name: last_name
         description: ""
 
-      - name: _fivetran_deleted
-        description: ""
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
-      - name: _fivetran_synced
-        description: ""
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."                                          

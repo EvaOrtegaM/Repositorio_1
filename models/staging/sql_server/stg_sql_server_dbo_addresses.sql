@@ -7,12 +7,13 @@ with source as (
 renamed as (
 
     select
+
+        address_id,
         address,
         state,
         country,
-        address_id,
         zipcode,
-        _fivetran_deleted,
+        _fivetran_deleted as deletion_date,
         _fivetran_synced as date_load
 
     from source

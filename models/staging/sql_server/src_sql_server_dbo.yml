@@ -25,9 +25,9 @@ sources:
           - name: country
             description: "Country of each delivery address of each customer."
           - name: address
-            description: "Complete address direction of each delivery address of each customer."
+            description: "Complete description of each delivery address of each customer."
           - name: state
-            description: "State address direction of each delivery address of each customer."
+            description: "State of each delivery address of each customer."
           - name: _fivetran_deleted
             description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
@@ -188,9 +188,9 @@ sources:
           - name: status
             description: "Status of the promotion, if it is active or not."
           - name: _fivetran_deleted
-            description: Date that the data was deleted (if it has been deleted) from fivetran.
+            description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
-            description: Date that the data was loaded from fivetran.
+            description: "Date that the data was loaded from fivetran."
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
@@ -198,21 +198,21 @@ sources:
       - name: users
         columns:
           - name: user_id
-            description: UUID of each unique user.
+            description: "UUID of each unique user."
             tests:
             - not_null
             - unique                      
           - name: updated_at
-            description: Date (UTC) of last user's account update.
+            description: "Date (UTC) of last user's account update."
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
           - name: address_id
-            description: ""
+            description: "UUID of each delivery address of each customer."
           - name: last_name
-            description: User's last name. PII.
+            description: "User's last name. PII."
           - name: created_at
-            description: Date (UTC) of user's account creation.
+            description: "Date (UTC) of user's account creation."
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
@@ -221,13 +221,13 @@ sources:
           # - name: total_orders
           # Columna borrada porque todos los datos null.
           - name: first_name
-            description: User's first name. PII.
+            description: "User's first name. PII."
           - name: email
-            description: User's email. PII.
+            description: "User's email. PII."
           - name: _fivetran_deleted
-            description: Date that the data was deleted (if it has been deleted) from fivetran.
+            description: "Date that the data was deleted (if it has been deleted) from fivetran."
           - name: _fivetran_synced
-            description: Date that the data was loaded from fivetran.
+            description: "Date that the data was loaded from fivetran."
             tests:           
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_tz            
@@ -236,40 +236,40 @@ sources:
         description: "Data about events in the platform of demo."
         columns:
           - name: event_id
-            description: UUID of each unique event on the platform.
+            description: "UUID of each unique event on the platform."
             tests:
             - not_null
             - unique
           - name: session_id
-            description: UUID of each browsing session on the platform which can contain many events.
+            description: "UUID of each browsing session on the platform which can contain many events."
             tests:
             - not_null
           - name: user_id
-            description: UUID of the user that this event is associated with.
+            description: "UUID of the user that this event is associated with."
             tests:
             - not_null
           - name: page_url
-            description: URL that the event happened on.
+            description: "URL that the event happened on."
             tests:
             - not_null
           - name: created_at
-            description: Timestamp of the event (UTC).
+            description: "Timestamp of the event (UTC)."
             tests:
             - not_null     
             - dbt_expectations.expect_column_values_to_be_of_type:
                column_type: timestamp_ntz            
           - name: event_type
-            description: 
+            description: "{{ doc('event_type') }}"
             tests:
              - not_null
              - accepted_values:
                  values: ['page_view', 'add_to_cart', 'package_shipped', 'checkout']
           - name: order_id
-            description: If the event is specific to an order (mostly used for checkout).
+            description: "If the event is specific to an order (mostly used for checkout)."
           - name: product_id
-            description: If the event is specific to a product.
+            description: "If the event is specific to a product."
           - name: _fivetran_synced
-            description: Date that the data was loaded from fivetran.
+            description: "Date that the data was loaded from fivetran."
             tests:
             - not_null
             tests:           

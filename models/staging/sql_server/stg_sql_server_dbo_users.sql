@@ -15,7 +15,7 @@ renamed as (
         address_id,
         created_at as user_created_at_utc,
         updated_at as user_updated_at_utc,        
-        _fivetran_deleted,
+        _fivetran_deleted as deletion_date,
         _fivetran_synced as date_load
 
     from source

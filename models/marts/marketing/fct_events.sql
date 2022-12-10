@@ -6,14 +6,14 @@ WITH stg_events AS (
 renamed_casted AS (
     SELECT
          event_id
+        ,event_type         
         ,page_url
-        ,event_type
+        ,session_id
         ,user_id
         ,product_id
-        ,session_id
-        ,event_created_at_utc
         ,order_id
-        ,date_load
+        ,event_created_at_utc
+        
     FROM stg_events
     )
 

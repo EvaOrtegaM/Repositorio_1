@@ -1,0 +1,11 @@
+{% docs shipping_service %}
+	
+One of the following values: 
+
+| status         | definition                                       |
+|----------------|--------------------------------------------------|
+| preparing      | Order in prepare, not yet shipped.               |
+| shipped        | Order has been shipped, not yet been delivered.  |
+| delivered      | Order has been received by customers.            |  
+
+{% enddocs %}

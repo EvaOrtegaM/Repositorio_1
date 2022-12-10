@@ -6,15 +6,14 @@ WITH src_events AS (
 renamed_casted AS (
     SELECT
          event_id
+        ,event_type         
         ,page_url
-        ,event_type
+        ,session_id        
         ,user_id
         ,product_id
-        ,session_id
+        ,order_id        
         ,created_at as event_created_at_utc
-        ,order_id
-        ,_fivetran_deleted
-        ,_fivetran_synced as date_load
+        ,_fivetran_deleted as deletion_date
     FROM src_events
     )
 
