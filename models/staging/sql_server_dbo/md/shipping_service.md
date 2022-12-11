@@ -2,10 +2,12 @@
 	
 One of the following values: 
 
-| status         | definition                                       |
-|----------------|--------------------------------------------------|
-| preparing      | Order in prepare, not yet shipped.               |
-| shipped        | Order has been shipped, not yet been delivered.  |
-| delivered      | Order has been received by customers.            |  
+| shipping_service | definition                         |
+|------------------|------------------------------------|
+| ups              | Shipping by ups company.           |
+| usps             | Shipping by usps.                  |
+| fedex            | Shipping by fedex company.         |  
+| dhl              | Shipping by dhl company.           |  
+|                  | No company assigned yet            |  
 
 {% enddocs %}

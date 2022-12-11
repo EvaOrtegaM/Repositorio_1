@@ -2,10 +2,11 @@
 	
 One of the following values: 
 
-| status         | definition                                       |
-|----------------|--------------------------------------------------|
-| preparing      | Order in prepare, not yet shipped.               |
-| shipped        | Order has been shipped, not yet been delivered.  |
-| delivered      | Order has been received by customers.            |  
-
+| event_type      | definition                                         |  
+|-----------------|----------------------------------------------------|
+| page_view       | The user has visited the page.                     |
+| add_to_cart     | The user has added a product to the cart.          |
+| checkout        | the user has entered the checkout page             |  
+| package_shipped | The user has entered the shipping information page.|  
+  
 {% enddocs %}

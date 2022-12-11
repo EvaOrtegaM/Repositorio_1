@@ -46,10 +46,7 @@ sources:
           - name: order_id
             description: "UUID of each unique product item in each order."
             tests:
-            - not_null
-            - relationships:
-                  to: source('sql_server_dbo','orders')
-                  field: order_id                        
+            - not_null                       
           - name: product_id
             description: "UUID of each unique product item in each order."
             tests:
@@ -77,7 +74,10 @@ sources:
             description: "UUID of each unique order."
             tests:
             - not_null
-            - unique          
+            - unique   
+            - relationships:
+                  to: source('sql_server_dbo','order_items')
+                  field: order_id                    
           - name: shipping_service
             description: "{{ doc('shipping_service') }}"
           - name: shipping_cost
@@ -101,7 +101,10 @@ sources:
           - name: promo_id
             description: "UUID of each unique promotion."
             tests:
-            - not_null                     
+            - not_null 
+            - relationships:
+                  to: source('sql_server_dbo','promo')
+                  field: promo_id                                
           - name: estimated_delivery_at
             description: "Timestamp of the estimated delivery date (UTC)."
             tests:
