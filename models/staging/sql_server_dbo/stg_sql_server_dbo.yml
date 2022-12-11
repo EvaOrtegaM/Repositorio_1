@@ -1,0 +1,250 @@
+version: 2
+
+models:
+  - name: stg_sql_server_dbo_addresses 
+    schema: sql_server_dbo      
+    description: "Data about addresses in the platform of demo."
+    columns:
+
+      - name: address_id
+        description: "UUID of each delivery address of each customer."
+
+      - name: address
+        description: "Complete description of each delivery address of each customer."
+
+      - name: state
+        description: "State of each delivery address of each customer."
+
+      - name: country
+        description: "Country of each delivery address of each customer."
+
+      - name: zipcode
+        description: "Zipcode of each delivery address of each customer."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
+
+
+  - name: stg_sql_server_dbo_events
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
+    description: "Data about events in the platform of demo."
+    columns:
+      - name: event_id
+        description: "UUID of each unique event on the platform."
+
+      - name: event_type
+        description: "{{ doc('event_type') }}"
+
+      - name: page_url
+        description: "URL that the event happened on."
+
+      - name: session_id
+        description: "UUID of each browsing session on the platform which can contain many events."
+
+      - name: user_id
+        description: "UUID of the user that this event is associated with."
+
+      - name: product_id
+        description: "If the event is specific to a product."
+
+      - name: order_id
+        description: "If the event is specific to an order (mostly used for checkout)."
+
+      - name: event_created_at_utc
+        description: "Timestamp of the event (UTC)."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+
+  - name: stg_sql_server_dbo_order_items
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
+    description: "Data about items of each order in the platform of demo."
+    columns:
+      - name: order_id
+        description: "UUID of each unique product item in each order."
+
+      - name: product_id
+        description: "UUID of each unique product item in each order."
+
+      - name: quantity
+        description: "Quantity of each unique product item in each order."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
+
+
+
+  - name: stg_sql_server_dbo_orders
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
+    description: "Data about orders in the platform of demo."
+    columns:
+      - name: order_id
+        description: "UUID of each unique order."
+
+      - name: user_id
+        description: "UUID of each unique user."
+
+      - name: promo_id
+        description: "UUID of each unique promotion."
+
+      - name: address_id
+        description: "UUID of each delivery address of each customer."
+
+      - name: order_created_at_utc
+        description: "Timestamp of the order creation date (UTC)."
+
+      - name: order_cost_usd
+        description: "Order cost of each order, without shipping cost."
+
+      - name: shipping_cost_usd
+        description: "Shipping cost of each order."
+
+      - name: total_order_cost_usd
+        description: "Total order cost of each order, as the sum of the order cost and the shipping cost."
+
+      - name: shipping_service
+        description: "{{ doc('shipping_service') }}"
+
+      - name: status_order
+        description: "Shipping cost of each order."
+
+      - name: delivered_at_utc
+        description: "Timestamp of the delivery date (UTC)."
+
+      - name: estimated_delivery_at_utc
+        description: "Timestamp of the estimated delivery date (UTC)."
+
+      - name: tracking_id
+        description: "UUID of each unique tracking code."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
+
+
+models:
+  - name: stg_sql_server_dbo_products
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
+    description: "Data about products in the platform of demo."
+    columns:
+      - name: product_id
+        description: "UUID of each unique product."
+
+      - name: product_description
+        description: "Description/name of each unique product."
+
+      - name: price_usd
+        description: "Price of each unique product."
+
+      - name: inventory
+        description: "Quantity on inventory of each unique product."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
+
+
+  - name: stg_sql_server_dbo_promos
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}   
+    description: ""
+    columns:
+      - name: promo_id
+        description: "UUID of each unique promotion."
+
+      - name: promo_description
+        description: "Description/name of each unique promo."
+
+      - name: status_promo
+        description: "Status of the promotion, if it is active or not."
+
+      - name: discount
+        description: "Discount in an order cost due to a promotion"
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
+
+
+  - name: stg_sql_server_dbo_users
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
+    description: "Data about users in the platform of demo."
+    columns:
+      - name: user_id
+        description: "UUID of each unique user."
+
+      - name: first_name
+        description: "User's first name. PII."
+
+      - name: last_name
+        description: "User's last name. PII."
+
+      - name: email
+        description: "User's email. PII."
+
+      - name: phone_number
+        description: "User's phone number. PII."
+
+      - name: address_id
+        description: "UUID of each delivery address of each customer."
+
+      - name: user_created_at_utc
+        description: "Date (UTC) of user's account creation."
+
+      - name: user_updated_at_utc
+        description: "Date (UTC) of last user's account update."
+
+      - name: deletion_date
+        description: "Date that the data was deleted (if it has been deleted) from fivetran."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."
+                                        

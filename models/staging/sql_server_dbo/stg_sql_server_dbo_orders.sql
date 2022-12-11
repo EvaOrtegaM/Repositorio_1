@@ -23,7 +23,7 @@ renamed_casted as (
         delivered_at as delivered_at_utc,        
         estimated_delivery_at as estimated_delivery_at_utc,
         tracking_id,
-        _fivetran_deleted,
+        _fivetran_deleted as deletion_date,
         _fivetran_synced as date_load
 
     from source

@@ -12,7 +12,7 @@ renamed as (
         promo_id as promo_description,        
         status as status_promo,
         discount,
-        _fivetran_deleted,
+        _fivetran_deleted as deletion_date,
         _fivetran_synced as date_load 
 
     from source

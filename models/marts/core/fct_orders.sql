@@ -1,3 +1,4 @@
+
 WITH stg_orders AS (
     SELECT * 
     FROM {{ ref('stg_sql_server_dbo_orders') }}
