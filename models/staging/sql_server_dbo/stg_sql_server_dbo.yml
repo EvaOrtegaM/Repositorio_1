@@ -1,8 +1,9 @@
 version: 2
 
 models:
-  - name: stg_sql_server_dbo_addresses
-    description: ""
+  - name: stg_sql_server_dbo_addresses 
+    schema: sql_server_dbo      
+    description: "Data about addresses in the platform of demo."
     columns:
 
       - name: address_id
@@ -28,6 +29,13 @@ models:
 
 
   - name: stg_sql_server_dbo_events
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
     description: "Data about events in the platform of demo."
     columns:
       - name: event_id
@@ -59,6 +67,13 @@ models:
 
 
   - name: stg_sql_server_dbo_order_items
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
     description: "Data about items of each order in the platform of demo."
     columns:
       - name: order_id
@@ -79,6 +94,13 @@ models:
 
 
   - name: stg_sql_server_dbo_orders
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
     description: "Data about orders in the platform of demo."
     columns:
       - name: order_id
@@ -129,6 +151,13 @@ models:
 
 models:
   - name: stg_sql_server_dbo_products
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
     description: "Data about products in the platform of demo."
     columns:
       - name: product_id
@@ -151,6 +180,13 @@ models:
 
 
   - name: stg_sql_server_dbo_promos
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}   
     description: ""
     columns:
       - name: promo_id
@@ -173,6 +209,13 @@ models:
 
 
   - name: stg_sql_server_dbo_users
+    schema: sql_server_dbo
+    database: |
+      {%- if  target.name == 'user_dev' -%} dev_silver_db_alumno_7 
+      {%- elif target.name == 'ci' -%} pro_silver_db_alumno_7 
+      {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
+      {%- else -%} {{target.database}}
+      {%- endif -%}     
     description: "Data about users in the platform of demo."
     columns:
       - name: user_id
