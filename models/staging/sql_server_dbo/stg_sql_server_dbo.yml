@@ -3,7 +3,7 @@ version: 2
 models:
   - name: stg_sql_server_dbo_addresses 
     schema: sql_server_dbo      
-    description: "Data about addresses in the platform of demo."
+    description: "Data about addresses in the platform."
     columns:
 
       - name: address_id
@@ -36,7 +36,7 @@ models:
       {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}     
-    description: "Data about events in the platform of demo."
+    description: "Data about events in the platform."
     columns:
       - name: event_id
         description: "UUID of each unique event on the platform."
@@ -74,7 +74,7 @@ models:
       {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}     
-    description: "Data about items of each order in the platform of demo."
+    description: "Data about items of each order in the platform."
     columns:
       - name: order_id
         description: "UUID of each unique product item in each order."
@@ -105,7 +105,7 @@ models:
       {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}     
-    description: "Data about orders in the platform of demo."
+    description: "Data about orders in the platform."
     columns:
       - name: order_id
         description: "UUID of each unique order."
@@ -178,7 +178,7 @@ models:
       {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}     
-    description: "Data about products in the platform of demo."
+    description: "Data about products in the platform."
     columns:
       - name: product_id
         description: "UUID of each unique product."
@@ -236,7 +236,7 @@ models:
       {%- elif target.name == 'pro'-%} pro_silver_db_alumno_7  
       {%- else -%} {{target.database}}
       {%- endif -%}     
-    description: "Data about users in the platform of demo."
+    description: "Data about users in the platform."
     columns:
       - name: user_id
         description: "UUID of each unique user."

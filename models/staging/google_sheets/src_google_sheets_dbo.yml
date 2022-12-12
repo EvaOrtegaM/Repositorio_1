@@ -16,7 +16,7 @@ sources:
 
       - name: budget
 
-        description: "Data about sales forecast for each month in the platform of demo."
+        description: "Data about sales forecast for each month in the platform."
 
         columns:
 
