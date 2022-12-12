@@ -8,10 +8,10 @@ renamed_casted as (
 
     select
 
+        address_id,
         address,
         state,
         country,
-        address_id,
         zipcode,
         date_load
 

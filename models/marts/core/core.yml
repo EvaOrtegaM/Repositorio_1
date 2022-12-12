@@ -48,3 +48,27 @@ models:
 
       - name: date_load
         description: "Date that the data was loaded from fivetran."
+
+
+
+  - name: dim_addresses
+    description: "Data about addresses in the platform of demo."
+    columns:
+
+      - name: address_id
+        description: "UUID of each delivery address of each customer."
+
+      - name: address
+        description: "Complete description of each delivery address of each customer."
+
+      - name: state
+        description: "State of each delivery address of each customer."
+
+      - name: country
+        description: "Country of each delivery address of each customer."
+
+      - name: zipcode
+        description: "Zipcode of each delivery address of each customer."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."        
