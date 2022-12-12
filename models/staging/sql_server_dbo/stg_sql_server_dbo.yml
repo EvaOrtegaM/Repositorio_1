@@ -151,7 +151,7 @@ models:
         description: "{{ doc('shipping_service') }}"
 
       - name: status_order
-        description: "Shipping cost of each order."
+        description: "{{ doc('order_status') }}"
 
       - name: delivered_at_utc
         description: "Timestamp of the delivery date (UTC)."
