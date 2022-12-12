@@ -50,7 +50,10 @@ sources:
           - name: product_id
             description: "UUID of each unique product item in each order."
             tests:
-            - not_null          
+            - not_null
+            - relationships:
+                  to: source('sql_server_dbo','products')
+                  field: product_id                       
           - name: quantity
             description: "Quantity of each unique product item in each order."
             tests:
@@ -101,10 +104,7 @@ sources:
           - name: promo_id
             description: "UUID of each unique promotion."
             tests:
-            - not_null 
-            - relationships:
-                  to: source('sql_server_dbo','promo')
-                  field: promo_id                                
+            - not_null                               
           - name: estimated_delivery_at
             description: "Timestamp of the estimated delivery date (UTC)."
             tests:
@@ -191,8 +191,7 @@ sources:
           - name: promo_id
             description: "UUID of each unique promotion."
             tests:
-            - not_null
-            - unique            
+            - not_null            
           - name: discount
             description: "Discount in an order cost due to a promotion"
             tests:
@@ -226,6 +225,10 @@ sources:
                column_type: timestamp_ntz            
           - name: address_id
             description: "UUID of each delivery address of each customer."
+            tests:        
+            - relationships:
+                  to: source('sql_server_dbo','addresses')
+                  field: address_id            
           - name: last_name
             description: "User's last name. PII."
           - name: created_at
@@ -267,6 +270,9 @@ sources:
             description: "UUID of the user that this event is associated with."
             tests:
             - not_null
+            - relationships:
+                  to: source('sql_server_dbo','users')
+                  field: user_id             
           - name: page_url
             description: "URL that the event happened on."
             tests:

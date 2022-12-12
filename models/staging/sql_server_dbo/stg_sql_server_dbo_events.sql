@@ -1,3 +1,4 @@
+
 WITH src_events AS (
     SELECT * 
     FROM {{ source('sql_server_dbo', 'events') }}
@@ -18,3 +19,4 @@ renamed_casted AS (
     )
 
 SELECT * FROM renamed_casted
+

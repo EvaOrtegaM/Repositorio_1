@@ -1,9 +1,9 @@
-{% set event_types = obtener_valores(ref('stg_sql_server_dbo_events'),'event_type') %}
+{% set event_types = obtener_valores(ref('fct_events'),'event_type') %}
 
-WITH stg_events AS (
+WITH events AS (
 
     SELECT *
-    FROM {{ ref('stg_sql_server_dbo_events') }}
+    FROM {{ ref('fct_events') }}
     ),    
 
 user_events as (
@@ -15,7 +15,7 @@ user_events as (
         {%- if not loop.last %},{% endif -%}
         {% endfor %}
 
-    from stg_events 
+    from events 
 
     group by user_id
 
@@ -31,7 +31,7 @@ sessions AS (
         ,max(event_created_at_utc) as most_recent_session_date
         ,count(session_id) as number_of_sessions
 
-    FROM {{ ref('stg_sql_server_dbo_events') }}
+    FROM {{ ref('fct_events') }}
     group by user_id
     ),  
 

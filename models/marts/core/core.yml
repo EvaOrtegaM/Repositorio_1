@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Data about orders in the platform of demo."
+    columns:
+      - name: order_id
+        description: "UUID of each unique order."
+
+      - name: user_id
+        description: "UUID of each unique user."
+
+      - name: promo_id
+        description: "UUID of each unique promotion."
+
+      - name: address_id
+        description: "UUID of each delivery address of each customer."
+
+      - name: order_created_at_utc
+        description: "Timestamp of the order creation date (UTC)."
+
+      - name: order_cost_usd
+        description: "Order cost of each order, without shipping cost."
+
+      - name: shipping_cost_usd
+        description: "Shipping cost of each order."
+
+      - name: total_order_cost_usd
+        description: "Total order cost of each order, as the sum of the order cost and the shipping cost."
+
+      - name: shipping_service
+        description: "{{ doc('shipping_service') }}"
+
+      - name: status_order
+        description: "{{ doc('order_status') }}"
+
+      - name: estimated_delivery_at_utc
+        description: "Timestamp of the estimated delivery date (UTC)."
+
+      - name: delivered_at_utc
+        description: "Timestamp of the delivery date (UTC)."
+
+      - name: days_to_deliver
+        description: "The difference between the day the order was placed until the day it arrived." 
+
+      - name: tracking_id
+        description: "UUID of each unique tracking code."
+
+      - name: date_load
+        description: "Date that the data was loaded from fivetran."

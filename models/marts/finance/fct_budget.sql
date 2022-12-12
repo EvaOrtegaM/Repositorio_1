@@ -13,8 +13,8 @@ WITH stg_budget_products AS (
 renamed_casted AS (
     SELECT
           _row
+        , budget_date
         , to_char(budget_date, 'yyyymmdd') as id_date
-        , month(budget_date) as month
         , monthname(budget_date) as desc_month
         , quantity 
         ,_fivetran_synced

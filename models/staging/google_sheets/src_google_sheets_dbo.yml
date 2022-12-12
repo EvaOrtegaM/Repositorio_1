@@ -26,8 +26,6 @@ sources:
 
             tests:
 
-              - unique
-
               - not_null
 
           - name: quantity
@@ -38,6 +36,12 @@ sources:
 
               - not_null
 
+              - positive_values   
+
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                 column_type: number 
+
+
           - name: month
 
             description: "Budget date that represents the month of each sales forecast."
@@ -45,6 +49,9 @@ sources:
             tests:
 
               - not_null
+
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                 column_type: date               
 
           - name: product_id
 
@@ -54,38 +61,19 @@ sources:
 
               - not_null
 
+              - relationships:
+                    to: source('sql_server_dbo','products')
+                    field: product_id                
+
           - name: _fivetran_synced
 
             description: "Date that the data was loaded from fivetran."
 
+            tests:
+
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                 column_type: timestamp_tz             
 
 
-      - name: fivetran_audit
-
-        columns:
-
-          - name: id
-
-          - name: message
-
-          - name: update_started
-
-          - name: update_id
-
-          - name: schema
-
-          - name: table
-
-          - name: start
-
-          - name: done
-
-          - name: rows_updated_or_inserted
-
-          - name: status
-
-          - name: progress
-
-          - name: _fivetran_synced
 
 

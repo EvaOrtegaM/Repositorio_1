@@ -1,11 +1,11 @@
-WITH stg_addresses AS (
+WITH addresses AS (
     SELECT * 
-    FROM {{ ref('stg_sql_server_dbo_addresses') }}
+    FROM {{ ref('dim_addresses') }}
     ),
 
-stg_orders AS (
+orders AS (
     SELECT * 
-    FROM {{ ref('stg_sql_server_dbo_orders') }}
+    FROM {{ ref('fct_orders') }}
     ),    
 
 state_orders AS (
@@ -17,8 +17,8 @@ state_orders AS (
         ,sum(case when o.status_order = 'shipped' then 1 else 0 end) as total_orders_shipped
         ,sum(case when o.status_order = 'preparing' then 1 else 0 end) as total_orders_preparing
 
-    FROM stg_addresses a
-    left join stg_orders o using (address_id)
+    FROM addresses a
+    left join orders o using (address_id)
     GROUP BY a.state, a.country
     )
     

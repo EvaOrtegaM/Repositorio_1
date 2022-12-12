@@ -81,6 +81,10 @@ models:
 
       - name: product_id
         description: "UUID of each unique product item in each order."
+        tests:        
+        - relationships:
+              to: ref('stg_sql_server_dbo_products')
+              field: product_id          
 
       - name: quantity
         description: "Quantity of each unique product item in each order."
@@ -105,15 +109,31 @@ models:
     columns:
       - name: order_id
         description: "UUID of each unique order."
+        tests:
+        - relationships:
+              to: ref('stg_sql_server_dbo_order_items')
+              field: order_id          
 
       - name: user_id
         description: "UUID of each unique user."
+        tests:        
+        - relationships:
+              to: ref('stg_sql_server_dbo_users')
+              field: user_id          
 
       - name: promo_id
         description: "UUID of each unique promotion."
+        tests:        
+        - relationships:
+              to: ref('stg_sql_server_dbo_promos')
+              field: promo_id          
 
       - name: address_id
         description: "UUID of each delivery address of each customer."
+        tests:        
+        - relationships:
+              to: ref('stg_sql_server_dbo_addresses')
+              field: address_id          
 
       - name: order_created_at_utc
         description: "Timestamp of the order creation date (UTC)."
@@ -131,7 +151,7 @@ models:
         description: "{{ doc('shipping_service') }}"
 
       - name: status_order
-        description: "Shipping cost of each order."
+        description: "{{ doc('order_status') }}"
 
       - name: delivered_at_utc
         description: "Timestamp of the delivery date (UTC)."
@@ -235,6 +255,10 @@ models:
 
       - name: address_id
         description: "UUID of each delivery address of each customer."
+        tests:        
+        - relationships:
+              to: ref('stg_sql_server_dbo_addresses')
+              field: address_id        
 
       - name: user_created_at_utc
         description: "Date (UTC) of user's account creation."
