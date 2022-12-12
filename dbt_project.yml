@@ -61,8 +61,6 @@ models:
         {%- endif -%}
       core:
         +schema: core
-      aggregates:
-        +schema: aggregates
       finance:
         +schema: finance
       marketing:

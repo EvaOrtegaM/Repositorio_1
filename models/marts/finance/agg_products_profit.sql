@@ -12,12 +12,7 @@ orders AS (
     SELECT * 
     FROM {{ ref('fct_orders') }}
     ),    
-
-dim_date AS (
-    SELECT * 
-    FROM {{ ref('dim_date') }}
-    ),    
-
+    
 
 products_sold AS (
     SELECT
@@ -39,7 +34,7 @@ products_sold AS (
     ),
     
 
-products_month AS (
+final AS (
     SELECT
         
     product_id
@@ -47,12 +42,11 @@ products_month AS (
     ,p.price_usd
     ,sum(p.total_products_sold) as total_sold_per_product
     ,sum(p.total_product_profit_usd) as total_profit_per_product
-    ,d.month
+    ,month(order_date) as month
 
     FROM products_sold p
-    left join dim_date d on p.order_date = d.date_day
     
     GROUP BY  month ,product_id, product_description, price_usd
     )
     
-SELECT * FROM products_month
+SELECT * FROM final

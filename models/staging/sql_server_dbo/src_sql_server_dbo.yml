@@ -11,7 +11,7 @@ sources:
       {%- endif -%}
     tables:
       - name: addresses
-        description: "Data about addresses in the platform of demo."      
+        description: "Data about addresses in the platform."      
         columns:
           - name: address_id
             description: "UUID of each delivery address of each customer."
@@ -41,7 +41,7 @@ sources:
 
 
       - name: order_items
-        description: "Data about items of each order in the platform of demo."       
+        description: "Data about items of each order in the platform."       
         columns:
           - name: order_id
             description: "UUID of each unique product item in each order."
@@ -71,7 +71,7 @@ sources:
 
 
       - name: orders
-        description: "Data about orders in the platform of demo."       
+        description: "Data about orders in the platform."       
         columns:
           - name: order_id
             description: "UUID of each unique order."
@@ -154,7 +154,7 @@ sources:
 
 
       - name: products
-        description: "Data about products in the platform of demo."       
+        description: "Data about products in the platform."       
         columns:
           - name: product_id
             description: "UUID of each unique product."
@@ -186,7 +186,7 @@ sources:
 
 
       - name: promos
-        description: "Data about promos in the platform of demo."       
+        description: "Data about promos in the platform."       
         columns:
           - name: promo_id
             description: "UUID of each unique promotion."
@@ -211,7 +211,7 @@ sources:
 
 
       - name: users
-        description: "Data about users in the platform of demo."       
+        description: "Data about users in the platform."       
         columns:
           - name: user_id
             description: "UUID of each unique user."
@@ -255,7 +255,7 @@ sources:
 
 
       - name: events
-        description: "Data about events in the platform of demo."
+        description: "Data about events in the platform."
         columns:
           - name: event_id
             description: "UUID of each unique event on the platform."
