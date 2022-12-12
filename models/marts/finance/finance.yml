@@ -8,11 +8,7 @@ models:
         description: "Incremental primary key for each row."
 
       - name: budget_date
-        description: "Budget date that represents the month of each sales forecast."
-        tests:
-        - not_null 
-        - dbt_expectations.expect_column_values_to_be_of_type:
-            column_type: date     
+        description: "Budget date that represents the month of each sales forecast."     
 
       - name: id_date
         description: ""
@@ -22,8 +18,6 @@ models:
 
       - name: quantity
         description: "Quantity of each unique product item that is expected to be sold in that month."
-        tests:
-        - positive_values
 
       - name: product_id
         description: "UUID of each unique product."
@@ -38,27 +32,18 @@ models:
     columns:
       - name: product_id
         description: "UUID of each unique product item in each order."
-        tests:
-        - not_null
-        - unique
 
       - name: product_description
         description: "Description/name of each unique product."
 
       - name: price_usd
         description: "Price of each unique product."
-        tests:
-        - positive_values          
 
       - name: total_product_quantity
         description: "Total product quantity sold that month"
-        tests:
-        - positive_values        
 
       - name: total_profit_per_product
-        description: "Total profit by product that month"
-        tests:
-        - positive_values        
+        description: "Total profit by product that month"      
 
       - name: month
         description: "month"        
