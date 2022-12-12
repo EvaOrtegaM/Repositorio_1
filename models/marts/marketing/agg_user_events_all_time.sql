@@ -1,3 +1,4 @@
+
 {% set event_types = obtener_valores(ref('fct_events'),'event_type') %}
 
 WITH events AS (
@@ -26,7 +27,7 @@ sessions AS (
     SELECT 
         user_id
         ,count (distinct (product_id)) as products_searched
-        ,count(order_id) as orders_amount
+        ,count(distinct (order_id)) as number_of_orders
         ,min(event_created_at_utc) as first_session_date
         ,max(event_created_at_utc) as most_recent_session_date
         ,count(session_id) as number_of_sessions
@@ -48,14 +49,14 @@ final as (
         ,s.most_recent_session_date
         ,s.number_of_sessions
         ,s.products_searched
-        ,s.orders_amount
+        ,s.number_of_orders
 
     from user_events u
 
     left join sessions s using(user_id)
 
     group by user_id,u.page_view_amount, u.add_to_cart_amount, u.package_shipped_amount, u.checkout_amount, 
-    s.first_session_date, s.most_recent_session_date ,s.orders_amount, s.number_of_sessions ,s.products_searched
+    s.first_session_date, s.most_recent_session_date ,s.number_of_orders, s.number_of_sessions ,s.products_searched
 )
 
 SELECT * FROM final
