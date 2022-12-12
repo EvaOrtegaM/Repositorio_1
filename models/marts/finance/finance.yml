@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: fct_budget
+    description: ""
+    columns:
+      - name: _row
+        description: "Incremental primary key for each row."
+
+      - name: budget_date
+        description: "Budget date that represents the month of each sales forecast."
+        tests:
+        - not_null 
+        - dbt_expectations.expect_column_values_to_be_of_type:
+            column_type: date     
+
+      - name: id_date
+        description: ""
+
+      - name: desc_month
+        description: ""
+
+      - name: quantity
+        description: "Quantity of each unique product item that is expected to be sold in that month."
+        tests:
+        - positive_values
+
+      - name: product_id
+        description: "UUID of each unique product."
+
+      - name: _fivetran_synced
+        description: "Date that the data was loaded from fivetran."
+
+
+
+  - name: agg_products_profit_monthly
+    description: "An aggregate model for monthly profits by product"
+    columns:
+      - name: product_id
+        description: "UUID of each unique product item in each order."
+
+      - name: product_description
+        description: "Description/name of each unique product."
+
+      - name: price_usd
+        description: "Price of each unique product."
+
+      - name: total_product_quantity
+        description: "Total product quantity sold that month"
+        tests:
+        - positive_values        
+
+      - name: total_profit_per_product
+        description: "Total profit by product that month"
+        tests:
+        - positive_values        
+
+      - name: month
+        description: "month"        

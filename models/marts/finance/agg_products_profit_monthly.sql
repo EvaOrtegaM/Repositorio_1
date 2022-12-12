@@ -40,7 +40,7 @@ final AS (
     product_id
     ,p.product_description
     ,p.price_usd
-    ,sum(p.total_products_sold) as total_sold_per_product
+    ,sum(p.total_products_sold) as total_product_quantity
     ,sum(p.total_product_profit_usd) as total_profit_per_product
     ,month(order_date) as month
 

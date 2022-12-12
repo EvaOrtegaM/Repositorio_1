@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: agg_orders_per_state
+    description: "An aggregate model for orders by state"
+    columns:
+      - name: state
+        description: "State of each delivery address of each customer."
+
+      - name: country
+        description: "Country of each delivery address of each customer."
+
+      - name: total_sales_usd
+        description: "Total sales profit by state."
+
+      - name: total_orders_delivered
+        description: "Total orders delivered by state."
+
+      - name: total_orders_shipped
+        description: "Total orders being shipped by state."
+
+      - name: total_orders_preparing
+        description: "Total orders in prepare by state."
