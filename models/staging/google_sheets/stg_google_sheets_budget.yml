@@ -14,5 +14,8 @@ models:
       - name: quantity
         description: "Quantity of each unique product item that is expected to be sold in that month."
 
+      - name: product_id
+        description: "UUID of each unique product."         
+
       - name: _fivetran_synced
         description: "Date that the data was loaded from fivetran."

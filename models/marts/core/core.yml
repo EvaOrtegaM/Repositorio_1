@@ -71,4 +71,36 @@ models:
         description: "Zipcode of each delivery address of each customer."
 
       - name: date_load
-        description: "Date that the data was loaded from fivetran."        
+        description: "Date that the data was loaded from fivetran."
+
+
+
+  - name: dim_date
+    description: "Date dimension"
+    columns:
+      - name: date_day
+        description: ""
+
+      - name: id_date
+        description: ""
+
+      - name: year
+        description: ""
+
+      - name: month
+        description: ""
+
+      - name: desc_month
+        description: ""
+
+      - name: id_year_month
+        description: ""
+
+      - name: previous_day
+        description: ""
+
+      - name: year_week_day
+        description: ""
+
+      - name: week
+        description: ""                

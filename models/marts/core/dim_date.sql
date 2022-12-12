@@ -23,7 +23,7 @@ select
     , month(date_day) as month
     ,monthname(date_day) as desc_month
     , year(date_day)*100+month(date_day) as id_year_month
-    , date_day-1 as dia_previo
+    , date_day-1 as previous_day
     , year(date_day)||weekiso(date_day)||dayofweek(date_day) as year_week_day
     , weekiso(date_day) as week
 from date
