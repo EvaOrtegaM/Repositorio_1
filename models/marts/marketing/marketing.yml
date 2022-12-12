@@ -12,6 +12,8 @@ models:
 
       - name: total_sales_usd
         description: "Total sales profit by state."
+        tests:
+        - positive_values        
 
       - name: total_orders_delivered
         description: "Total orders delivered by state."

@@ -38,12 +38,17 @@ models:
     columns:
       - name: product_id
         description: "UUID of each unique product item in each order."
+        tests:
+        - not_null
+        - unique
 
       - name: product_description
         description: "Description/name of each unique product."
 
       - name: price_usd
         description: "Price of each unique product."
+        tests:
+        - positive_values          
 
       - name: total_product_quantity
         description: "Total product quantity sold that month"
