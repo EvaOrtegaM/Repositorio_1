@@ -19,6 +19,7 @@ with date as (
 select
       date_day 
     , year(date_day)*10000+month(date_day)*100+day(date_day) as id_date
+    , to_char(date_day, 'yyyy-mm') AS year_month
     , year(date_day) as year
     , month(date_day) as month
     ,monthname(date_day) as desc_month

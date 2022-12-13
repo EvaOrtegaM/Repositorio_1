@@ -14,7 +14,7 @@ renamed_casted AS (
         ,product_id
         ,order_id        
         ,created_at as event_created_at_utc
-        ,_fivetran_deleted as deletion_date
+        ,_fivetran_deleted 
     FROM src_events
     )
 

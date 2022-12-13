@@ -10,7 +10,7 @@ renamed AS (
     ,name as product_description
     ,price as price_usd
     ,inventory
-    ,_fivetran_deleted as deletion_date
+    ,_fivetran_deleted
     ,_fivetran_synced as date_load
 
     FROM src_sql_server_dbo

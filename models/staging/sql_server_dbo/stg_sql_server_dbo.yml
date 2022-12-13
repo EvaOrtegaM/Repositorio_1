@@ -21,7 +21,7 @@ models:
       - name: zipcode
         description: "Zipcode of each delivery address of each customer."
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
@@ -62,7 +62,7 @@ models:
       - name: event_created_at_utc
         description: "Timestamp of the event (UTC)."
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
 
@@ -89,7 +89,7 @@ models:
       - name: quantity
         description: "Quantity of each unique product item in each order."
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
@@ -162,7 +162,7 @@ models:
       - name: tracking_id
         description: "UUID of each unique tracking code."
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
@@ -192,7 +192,7 @@ models:
       - name: inventory
         description: "Quantity on inventory of each unique product."
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
@@ -221,7 +221,7 @@ models:
       - name: discount
         description: "Discount in an order cost due to a promotion"
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load
@@ -266,7 +266,7 @@ models:
       - name: user_updated_at_utc
         description: "Date (UTC) of last user's account update."
 
-      - name: deletion_date
+      - name: _fivetran_deleted
         description: "Date that the data was deleted (if it has been deleted) from fivetran."
 
       - name: date_load

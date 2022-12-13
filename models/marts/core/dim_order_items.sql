@@ -10,7 +10,7 @@ renamed as (
         order_id,
         product_id,
         quantity,
-        deletion_date,
+        _fivetran_deleted,
         date_load
 
     from stg_order_items

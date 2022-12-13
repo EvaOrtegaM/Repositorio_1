@@ -13,7 +13,7 @@ renamed as (
         state,
         country,
         zipcode,
-        _fivetran_deleted as deletion_date,
+        _fivetran_deleted,
         _fivetran_synced as date_load
 
     from source
