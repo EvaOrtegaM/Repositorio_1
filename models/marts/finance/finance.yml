@@ -39,7 +39,7 @@ models:
       - name: total_product_quantity
         description: "Total product quantity sold that month."
 
-      - name: total_profit_per_product
+      - name: total_profit_by_product
         description: "Total profit by product that month."      
 
       - name: year_month

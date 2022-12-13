@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: agg_orders_per_state
+  - name: agg_orders_by_state
     description: "An aggregate model for orders by state"
     columns:
       - name: state
