@@ -15,7 +15,7 @@ renamed as (
         address_id,
         user_created_at_utc,
         user_updated_at_utc,        
-        deletion_date,
+        _fivetran_deleted,
         date_load
 
     from stg_users

@@ -1,4 +1,4 @@
-with users as (
+ with users as (
 
     select * 
     from {{ ref('dim_users') }}
