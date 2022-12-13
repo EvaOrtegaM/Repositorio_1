@@ -42,11 +42,12 @@ final AS (
     ,p.price_usd
     ,sum(p.total_products_sold) as total_product_quantity
     ,sum(p.total_product_profit_usd) as total_profit_per_product
-    ,month(order_date) as month
+    --month(order_date) as month
+    ,to_char(p.order_date, 'yyyy-mm') AS year_month
 
     FROM products_sold p
     
-    GROUP BY  month ,product_id, product_description, price_usd
+    GROUP BY  year_month ,product_id, product_description, price_usd
     )
     
 SELECT * FROM final

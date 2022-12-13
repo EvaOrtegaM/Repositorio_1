@@ -10,17 +10,14 @@ models:
       - name: budget_date
         description: "Budget date that represents the month of each sales forecast."     
 
-      - name: id_date
+      - name: year_month
         description: ""
-
-      - name: desc_month
-        description: ""
-
-      - name: quantity
-        description: "Quantity of each unique product item that is expected to be sold in that month."
 
       - name: product_id
         description: "UUID of each unique product."
+
+      - name: quantity
+        description: "Quantity of each unique product item that is expected to be sold in that month."
 
       - name: _fivetran_synced
         description: "Date that the data was loaded from fivetran."
@@ -28,7 +25,7 @@ models:
 
 
   - name: agg_products_profit_monthly
-    description: "An aggregate model for monthly profits by product"
+    description: "An aggregate model for monthly profits by product."
     columns:
       - name: product_id
         description: "UUID of each unique product item in each order."
@@ -40,10 +37,10 @@ models:
         description: "Price of each unique product."
 
       - name: total_product_quantity
-        description: "Total product quantity sold that month"
+        description: "Total product quantity sold that month."
 
       - name: total_profit_per_product
-        description: "Total profit by product that month"      
+        description: "Total profit by product that month."      
 
-      - name: month
-        description: "month"        
+      - name: year_month
+        description: "Year and month for summary calculation."        

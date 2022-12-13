@@ -8,10 +8,10 @@ renamed_casted AS (
     SELECT
           _row
         , budget_date
-        , to_char(budget_date, 'yyyymmdd') as id_date
-        , monthname(budget_date) as desc_month
-        , quantity 
+        , to_char(budget_date, 'yyyy-mm') as year_month
+        --, monthname(budget_date) as desc_month
         , product_id
+        , quantity 
         ,_fivetran_synced
 
     FROM stg_budget_products
